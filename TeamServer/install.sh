@@ -19,7 +19,7 @@ sudo apt-get update -y
 
 
 echo "Installing basic dependencies"
-sudo apt install -y openjdk-11-jdk proxychains socat
+sudo apt install -y openjdk-11-jdk
 
 
 sudo hostnamectl set-hostname $HOSTNAME.$DOMAIN
@@ -52,3 +52,7 @@ chmod 700 ~/pki
 ipsec pki --gen --type rsa --size 4096 --outform pem > ~/pki/private/ca-key.pem
 ipsec pki --self --ca --lifetime 3650 --in ~/pki/private/ca-key.pem --type rsa --dn "CN=AD-Attacks CA" --outform pem > ~/pki/cacerts/ca-cert.pem
 ipsec pki --gen --type rsa --size 4096 --outform pem > ~/pki/private/server-key.pem
+
+
+
+sudo cp -r ~/pki/* /etc/ipsec.d/
