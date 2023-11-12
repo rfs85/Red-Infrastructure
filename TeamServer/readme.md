@@ -5,6 +5,6 @@
 
 ## Downloads
 
-1 - Docker
-2 - Virtual Machine
-3 - Ansible Recipe
+- Docker
+- Virtual Machine
+- Ansible Recipe
