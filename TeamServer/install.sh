@@ -4,7 +4,7 @@
 # Author: RFS
 # Web: #
 # Version: 0.1
-# OS: Ubuntu 18
+# OS: Ubuntu 18 / Debian 12
 
 DOMAIN="ad-attacks.rfs"
 HOSTNAME="cobalt"
@@ -19,7 +19,10 @@ sudo apt-get update -y
 
 
 echo "Installing basic dependencies"
-sudo apt install -y openjdk-11-jdk
+#Ubuntu18
+#sudo apt install -y openjdk-11-jdk 
+#Debian 12
+sudo apt install openjdk-17-jdk
 
 
 sudo hostnamectl set-hostname $HOSTNAME.$DOMAIN
