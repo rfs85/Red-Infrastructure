@@ -6,6 +6,16 @@
 # Version: 0.1
 # OS: Ubuntu 18 / Debian 12
 
+
+
+check_root() {
+  if [ "$(id -u)" != 0 ]; then
+    exiterr "Script must be run as root. Try 'sudo sh $0'"
+  fi
+}
+
+check_root()
+
 DOMAIN="ad-attacks.rfs"
 HOSTNAME="cobalt"
 C2_PORT="19500"
@@ -46,16 +56,3 @@ sudo ufw allow 500,4500/udp
 sudo ufw enable
 sudo ufw status
 
-
-## IPSEC COnfiguration
-echo "Configuring IPSec"
-sudo apt install strongswan strongswan-pki
-mkdir -p ~/pki/{cacerts,certs,private}
-chmod 700 ~/pki
-ipsec pki --gen --type rsa --size 4096 --outform pem > ~/pki/private/ca-key.pem
-ipsec pki --self --ca --lifetime 3650 --in ~/pki/private/ca-key.pem --type rsa --dn "CN=AD-Attacks CA" --outform pem > ~/pki/cacerts/ca-cert.pem
-ipsec pki --gen --type rsa --size 4096 --outform pem > ~/pki/private/server-key.pem
-
-
-
-sudo cp -r ~/pki/* /etc/ipsec.d/
