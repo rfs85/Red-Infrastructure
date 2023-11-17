@@ -7,6 +7,7 @@ Wants=network.target
 Type=Simple
 WorkingDirectory=/opt/cobaltstrike-v4.7
 ExecStart=/opt/cobaltstrike-v4.7/teamserver 192.168.159.195 <PASS>
+EnvironmentFile=/opt/cobaltstrike/c2env
 Restart=always
 
 
